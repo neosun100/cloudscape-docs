@@ -34,9 +34,14 @@ This project provides a comprehensive documentation system for Cloudscape Design
 
 ### Interactive Website
 - ✅ **Cloudscape UI** - Built with official components
+- ✅ **Real-time Statistics** - Live module and component counts
+- ✅ **Global Search** - Find components and modules instantly
 - ✅ **Markdown Rendering** - Real-time document rendering
 - ✅ **Code Highlighting** - Syntax highlighting with Prism
 - ✅ **One-Click Copy** - Copy code examples instantly
+- ✅ **Breadcrumb Navigation** - Easy navigation path
+- ✅ **Help Panel** - Quick access to guides and shortcuts
+- ✅ **Back-to-Top Button** - Smooth scroll to top
 - ✅ **Responsive Design** - Works on all screen sizes
 - ✅ **Fast Loading** - Global CDN delivery
 
@@ -309,6 +314,17 @@ Contributions are welcome! Please follow these steps:
 ---
 
 ## 📝 Changelog
+
+### Version 1.1.0 (2025-12-24)
+
+**Enhanced**:
+- Real-time statistics display on homepage
+- Global search functionality with Autosuggest
+- Breadcrumb navigation for better UX
+- Back-to-top button for long documents
+- Help panel with usage guide and shortcuts
+- Improved mobile responsiveness
+- Optimized user experience
 
 ### Version 1.0.0 (2025-12-24)
 
