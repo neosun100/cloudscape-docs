@@ -2,6 +2,10 @@ import SideNavigation from '@cloudscape-design/components/side-navigation';
 import type { SideNavigationProps } from '@cloudscape-design/components/side-navigation';
 
 const navigationItems: SideNavigationProps.Item[] = [
+  { type: 'link', text: '🏠 首页', href: '/' },
+  { type: 'link', text: '📚 所有模块', href: '/modules' },
+  { type: 'link', text: '🔍 组件索引', href: '/components' },
+  { type: 'divider' },
   { type: 'link', text: '01 - 布局组件', href: '/document/COMPONENTS_01_LAYOUT' },
   { type: 'link', text: '02 - 导航组件', href: '/document/COMPONENTS_02_NAVIGATION' },
   { type: 'link', text: '03 - 表单基础', href: '/document/COMPONENTS_03_FORMS_BASIC' },
@@ -20,8 +24,8 @@ const navigationItems: SideNavigationProps.Item[] = [
   { type: 'link', text: '16 - 特殊组件', href: '/document/COMPONENTS_16_SPECIALIZED' },
   { type: 'link', text: '17 - 其他组件', href: '/document/COMPONENTS_17_MISC' },
   { type: 'divider' },
-  { type: 'link', text: '技术分析', href: '/document/CLOUDSCAPE_TECH_ANALYSIS' },
-  { type: 'link', text: '后台开发指南', href: '/document/CLOUDSCAPE_BACKEND_GUIDE' }
+  { type: 'link', text: '📘 技术分析', href: '/document/CLOUDSCAPE_TECH_ANALYSIS' },
+  { type: 'link', text: '📗 后台开发指南', href: '/document/CLOUDSCAPE_BACKEND_GUIDE' }
 ];
 
 export const Navigation = () => {
