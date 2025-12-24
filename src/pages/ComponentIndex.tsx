@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Header, Input, Table, SpaceBetween } from '@cloudscape-design/components';
+import { Container, Header, Input, Table, SpaceBetween, Button } from '@cloudscape-design/components';
+import { getComponentDemoLink } from '../utils/demoLinks';
 
 interface ComponentInfo {
   name: string;
@@ -125,6 +126,25 @@ export default function ComponentIndex() {
               header: '所属模块',
               cell: item => item.module,
               sortingField: 'module'
+            },
+            {
+              id: 'demo',
+              header: '在线演示',
+              cell: item => {
+                const demoLink = getComponentDemoLink(item.name);
+                return demoLink ? (
+                  <Button
+                    iconName="external"
+                    variant="inline-link"
+                    href={demoLink}
+                    target="_blank"
+                  >
+                    查看 Demo
+                  </Button>
+                ) : (
+                  <span style={{ color: '#999' }}>-</span>
+                );
+              }
             }
           ]}
           filter={

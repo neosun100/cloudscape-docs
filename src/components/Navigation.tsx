@@ -5,6 +5,7 @@ const navigationItems: SideNavigationProps.Item[] = [
   { type: 'link', text: '🏠 首页', href: '/' },
   { type: 'link', text: '📚 所有模块', href: '/modules' },
   { type: 'link', text: '🔍 组件索引', href: '/components' },
+  { type: 'link', text: '🎨 官方 Demo', href: 'https://cloudscape.design/demos/', external: true },
   { type: 'divider' },
   { type: 'link', text: '01 - 布局组件', href: '/document/COMPONENTS_01_LAYOUT' },
   { type: 'link', text: '02 - 导航组件', href: '/document/COMPONENTS_02_NAVIGATION' },

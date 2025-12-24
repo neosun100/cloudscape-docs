@@ -12,6 +12,7 @@ import {
 } from '@cloudscape-design/components';
 import { MarkdownRenderer } from '../components/MarkdownRenderer';
 import { componentToModule } from '../utils/componentMapping';
+import { officialDemos } from '../utils/demoLinks';
 
 export default function DocumentView() {
   const { id: moduleId } = useParams<{ id: string }>();
@@ -95,7 +96,17 @@ export default function DocumentView() {
           }}
         />
         
-        <Header variant="h1">{moduleId} 文档</Header>
+        <SpaceBetween direction="horizontal" size="xs">
+          <Header variant="h1">{moduleId} 文档</Header>
+          <Button
+            iconName="external"
+            href={officialDemos.main}
+            target="_blank"
+            variant="normal"
+          >
+            查看官方 Demo
+          </Button>
+        </SpaceBetween>
         
         {error && (
           <Alert
