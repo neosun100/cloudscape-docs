@@ -11,6 +11,7 @@ import {
   Button
 } from '@cloudscape-design/components';
 import { MarkdownRenderer } from '../components/MarkdownRenderer';
+import { componentToModule } from '../utils/componentMapping';
 
 export default function DocumentView() {
   const { id: moduleId } = useParams<{ id: string }>();
@@ -19,6 +20,19 @@ export default function DocumentView() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>('');
   const [showBackToTop, setShowBackToTop] = useState(false);
+
+  // 组件名称重定向
+  useEffect(() => {
+    if (moduleId && !moduleId.startsWith('COMPONENTS_') && !moduleId.startsWith('CLOUDSCAPE_')) {
+      const normalizedId = moduleId.toLowerCase().replace(/[-_]/g, '');
+      const targetModule = componentToModule[normalizedId];
+      
+      if (targetModule) {
+        navigate(`/document/${targetModule}`, { replace: true });
+        return;
+      }
+    }
+  }, [moduleId, navigate]);
 
   // 动态更新页面标题
   useEffect(() => {
