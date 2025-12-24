@@ -1,30 +1,54 @@
-import { Container, Header, Cards, SpaceBetween, Box, Button } from '@cloudscape-design/components';
-
-const modules = [
-  { name: 'Button', description: '按钮组件' },
-  { name: 'Input', description: '输入框组件' },
-  { name: 'Table', description: '表格组件' },
-  { name: 'Form', description: '表单组件' },
-  { name: 'Modal', description: '模态框组件' },
-  { name: 'Navigation', description: '导航组件' },
-  { name: 'Layout', description: '布局组件' },
-  { name: 'Cards', description: '卡片组件' },
-  { name: 'Charts', description: '图表组件' },
-  { name: 'DatePicker', description: '日期选择器' },
-  { name: 'Select', description: '选择器组件' },
-  { name: 'Pagination', description: '分页组件' },
-  { name: 'Breadcrumb', description: '面包屑导航' },
-  { name: 'Alert', description: '警告提示组件' },
-  { name: 'Progress', description: '进度条组件' },
-  { name: 'Tabs', description: '标签页组件' },
-  { name: 'Sidebar', description: '侧边栏组件' }
-];
+import { useState } from 'react';
+import { Container, Header, Cards, SpaceBetween, Box, Button, ColumnLayout, Input, Badge } from '@cloudscape-design/components';
+import { modules, getTotalComponentCount, getTotalFileSize } from '../data/modules';
 
 export default function Home() {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredModules = modules.filter(module =>
+    module.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    module.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case 'beginner': return 'green';
+      case 'intermediate': return 'blue';
+      case 'advanced': return 'red';
+      default: return 'grey';
+    }
+  };
+
+  const getImportanceColor = (importance: string) => {
+    switch (importance) {
+      case 'high': return 'red';
+      case 'medium': return 'blue';
+      case 'low': return 'grey';
+      default: return 'grey';
+    }
+  };
+
   return (
     <SpaceBetween direction="vertical" size="l">
       <Container header={<Header variant="h1">Cloudscape 文档</Header>}>
         <Box>欢迎使用 Cloudscape Design System 文档站点。这里包含了所有组件的详细说明和使用示例。</Box>
+      </Container>
+
+      <Container header={<Header variant="h2">统计信息</Header>}>
+        <ColumnLayout columns={3} variant="text-grid">
+          <Box>
+            <Box variant="h3" color="text-status-info">{modules.length}</Box>
+            <Box variant="small">总模块数</Box>
+          </Box>
+          <Box>
+            <Box variant="h3" color="text-status-success">{getTotalComponentCount()}</Box>
+            <Box variant="small">总组件数</Box>
+          </Box>
+          <Box>
+            <Box variant="h3" color="text-status-warning">{getTotalFileSize()}</Box>
+            <Box variant="small">文档大小</Box>
+          </Box>
+        </ColumnLayout>
       </Container>
 
       <Container header={<Header variant="h2">快速开始</Header>}>
@@ -38,22 +62,38 @@ export default function Home() {
       </Container>
 
       <Container header={<Header variant="h2">组件模块</Header>}>
-        <Cards
-          cardDefinition={{
-            header: item => item.name,
-            sections: [
-              {
-                content: item => item.description
-              }
-            ]
-          }}
-          cardsPerRow={[
-            { cards: 1 },
-            { minWidth: 500, cards: 2 },
-            { minWidth: 800, cards: 3 }
-          ]}
-          items={modules}
-        />
+        <SpaceBetween direction="vertical" size="m">
+          <Input
+            placeholder="搜索模块..."
+            value={searchTerm}
+            onChange={({ detail }) => setSearchTerm(detail.value)}
+          />
+          <Cards
+            cardDefinition={{
+              header: item => item.title,
+              sections: [
+                {
+                  content: item => (
+                    <SpaceBetween direction="vertical" size="xs">
+                      <Box>{item.description}</Box>
+                      <SpaceBetween direction="horizontal" size="xs">
+                        <Badge color={getDifficultyColor(item.difficulty)}>{item.difficulty}</Badge>
+                        <Badge color={getImportanceColor(item.importance)}>{item.importance}</Badge>
+                        <Badge>{item.componentCount} 组件</Badge>
+                      </SpaceBetween>
+                    </SpaceBetween>
+                  )
+                }
+              ]
+            }}
+            cardsPerRow={[
+              { cards: 1 },
+              { minWidth: 500, cards: 2 },
+              { minWidth: 800, cards: 3 }
+            ]}
+            items={filteredModules}
+          />
+        </SpaceBetween>
       </Container>
     </SpaceBetween>
   );
